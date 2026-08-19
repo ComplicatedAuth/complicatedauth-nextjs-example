@@ -1,0 +1,40 @@
+name: Example
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: complicatedauth-nextjs-example
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: complicatedauth-nextjs-example
+      - uses: actions/checkout@v4
+        with:
+          repository: ComplicatedAuth/complicatedauth-backend-sdk
+          path: complicatedauth-backend-sdk
+      - uses: actions/checkout@v4
+        with:
+          repository: ComplicatedAuth/complicatedauth-web-sdk
+          path: complicatedauth-web-sdk
+      - uses: actions/checkout@v4
+        with:
+          repository: ComplicatedAuth/complicatedauth-biometric-web-sdk
+          path: complicatedauth-biometric-web-sdk
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: complicatedauth-nextjs-example/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm audit --audit-level=high
