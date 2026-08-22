@@ -1,8 +1,8 @@
 # ComplicatedAuth Next.js example
 
-Copy `.env.example` to `.env.local`, provide a Project UID and API key, then run `npm install && npm run dev`.
+Copy `.env.example` to `.env.local`, provide a Project UID and scoped service credential, then run `npm install && npm run dev`.
 
-The API key is loaded lazily only when the dynamic route receives a request, so
+The service credential is loaded lazily only when the dynamic route receives a request, so
 static rendering and `next build` do not require production secrets. Browser
 code talks to `/api/auth` through `@complicatedauth/browser`; the server route
 uses `@complicatedauth/server` to exchange browser-safe tokens for backend

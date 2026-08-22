@@ -13,7 +13,7 @@ export const getComplicatedAuth = (): ComplicatedAuthServer => {
   complicatedAuth ??= new ComplicatedAuthServer({
     backendUrl: required("COMPLICATEDAUTH_URL"),
     projectUid: required("COMPLICATEDAUTH_PROJECT_UID"),
-    apiKey: required("COMPLICATEDAUTH_API_KEY"),
+    serviceCredential: required("COMPLICATEDAUTH_SERVICE_CREDENTIAL"),
     // Replace the development MemoryReferenceStore with RedisReferenceStore in production.
   });
   return complicatedAuth;
